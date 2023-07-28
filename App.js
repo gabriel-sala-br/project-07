@@ -8,6 +8,7 @@ import {
   Alert,
   TouchableOpacity,
   Image,
+  TextInput,
 } from "react-native";
 
 export default function App() {
@@ -21,6 +22,14 @@ export default function App() {
     imageUrl: "https://www.example.com/image.png",
     description: "This is a card description.",
   });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    // Aqui você pode adicionar a lógica para fazer a autenticação
+    console.log("Email:", email);
+    console.log("Senha:", password);
+  };
 
   const handleTap = () => {
     setTaps(taps + 1);
@@ -59,6 +68,22 @@ export default function App() {
         >
           <Text>Tap me!</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Button title="Login" onPress={handleLogin} />
       </View>
       <View style={styles.card}>
         <Image style={styles.image} source={cardData.image} />
@@ -117,5 +142,13 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
+  },
+  input: {
+    width: "100%",
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingLeft: 10,
   },
 });
